@@ -48,6 +48,10 @@ def monkey_patch_where_node():
         return
     monkey_patched = True
 
+    if django.VERSION >= (1,5):
+        from django.db.models.sql.constants import QUERY_TERMS
+        QUERY_TERMS.update(UnaccentOperation.operators.keys() + UnaccentOperation.smart_operators)
+
     # Update the operators accepted by a query when adding filters by adding those of unaccent
     # This way, it passes the test at db/models/sql/query.py:1021 which otherwise will override our custom lookup_types
     Query.query_terms.update(izip(UnaccentOperation.operators.keys() + UnaccentOperation.smart_operators, repeat(None)))
