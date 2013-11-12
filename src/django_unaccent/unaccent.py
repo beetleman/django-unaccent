@@ -7,6 +7,7 @@ adding all operators present in the UnaccentOperation class (operators and smart
 from itertools import izip, repeat
 import unicodedata
 
+import django
 from django.db.models.sql import Query
 from django.db.models.sql.where import WhereNode
 
