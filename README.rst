@@ -69,23 +69,10 @@ Database set up for unaccented search
 PostgreSQL
 ----------
 
-Important note: it seems recent versions of PostgreSQL (> 8.4) have the unaccent extension provided by default.
-We did not investigate this yet. What matters however is that your database can make unaccented search
-when the *unaccent* function is triggered in SQL (eg: select * from mytable where mycolumn = unaccent('Tchüs');).
+Installation::
 
-This was tested with the 8.4 version of PostgreSQL on a debian-like distribution.
-Install the ``unaccent`` extension (see the .travis.yml file for the setup script)::
+    $ psql -c 'CREATE EXTENSION unaccent;'
 
-    $ apt-get install postgresql-server-dev-8.4 libunac1 libunac1-dev
-    $ cd /tmp
-    $ wget "http://launchpad.net/postgresql-unaccent/trunk/0.1/+download/postgresql-unaccent-0.1.tar.gz"
-    $ tar -zxvf postgresql-unaccent-0.1.tar.gz
-    $ cd postgresql-unaccent-0.1
-    $ make && sudo make install
-
-The extension is now installed and can be added to any existing bases or templates::
-
-    $ psql -d template1 -f $(pg_config --sharedir)/contrib/unaccent.sql
 
 Quick test::
 
@@ -130,7 +117,7 @@ The requirements are:
     createdb -T template1 django_unaccent_table -O django_unaccent_user
 
 
-See: http://www.postgresql.org/docs/8.4/static/auth-pg-hba-conf.html
+See: http://www.postgresql.org/docs/9.3/static/auth-pg-hba-conf.html
 
 
 Performance
@@ -145,20 +132,12 @@ Postgres
 --------
 
 To enhance performance, you may one or several index on common queried fields
-(see http://www.postgresql.org/docs/8.4/static/sql-createindex.html for more information) like so::
+(see http://www.postgresql.org/docs/9.3/static/sql-createindex.html for more information) like so::
 
     CREATE INDEX username_idx ON films ((unaccent(title)));
 
 If you have any optimization tricks, let us know !
 
-TODO
-====
-
-* Ensure compatibility with recent postgres database unaccent feature
-* Push new database compatibility (MySQL, etc.) ?
-* Enhance running of test as a standalone lib but also as a lib included in a Django project
-  (I'm struggling as this is a "standalone" lib with no urlconf/settings - Django is not a great fan of this -
-  + the unaccent function is needed to perform those tests)
 
 Author
 ======
