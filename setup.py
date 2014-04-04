@@ -19,13 +19,8 @@ setup(
         package_dir = {'': 'src'},
         packages = ['django_unaccent'],
         long_description=read('README.rst'),
-        install_requires = [
-            'django >= 1.0, <=1.5',
-            # https://code.djangoproject.com/ticket/16250
-            'psycopg2<=2.4.1',
-        ],
-        tests_require = [
-        ],
+        install_requires = [],
+        tests_require = [],
         classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
