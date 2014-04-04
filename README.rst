@@ -1,12 +1,12 @@
 Django-Unaccent
 =================
 
+Modified from orignal for Django 1.6 support
+--------------------------------------------
+Please checkout the original repository
 
-.. Warning::
-   Django 1.5 and further are not yet supported, patch/contributors are welcome !
-
-.. image:: https://secure.travis-ci.org/djcoin/django-unaccent.png?branch=master
-    :target: http://travis-ci.org/djcoin/django-unaccent/
+Introduction
+------------
 
 
 Add unaccent search to the Django ORM like a breeze !
