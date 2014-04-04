@@ -80,7 +80,7 @@ class UnaccentNode(object):
             lhs = '%s.%s' % (qn(self.table_alias), qn(self.col_name))
         else:
             lhs = qn(self.col_name)
-        return connection.ops.field_cast_sql(db_type) % lhs
+        return connection.ops.field_cast_sql(db_type, None) % lhs
 
     def as_sql(self, qn, connection):
         """Having a as_sql method will short circuit the complex creation of make_atom in WhereNode
